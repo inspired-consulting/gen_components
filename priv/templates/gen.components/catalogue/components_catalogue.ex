@@ -1,9 +1,9 @@
-defmodule <%= web_module %>.<%= scoped %>Live do
+defmodule <%= catalogue_module %> do
   use <%= web_module %>, :live_view
 
-  alias <%= web_module %>.<%= scoped %>Live.Modals
-  alias <%= web_module %>.<%= scoped %>Live.Paginations
-  import <%= web_module %>.<%= scoped %>Live.Alerts
+  alias <%= catalogue_module %>.Modals
+  alias <%= catalogue_module %>.Paginations
+  import <%= catalogue_module %>.Alerts
 
   @impl Phoenix.LiveView
   def render(assigns) do

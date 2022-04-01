@@ -1,8 +1,8 @@
-defmodule <%= web_module %>.<%= scoped %>Live.Modals do
+defmodule <%= catalogue_module %>.Modals do
   use <%= web_module %>, :live_component
 
-  import <%= web_module %>.<%= scoped %>Live.Helpers
-  import <%= web_module %>.<%= compoents_scoped %>.Modal
+  import <%= catalogue_module %>.Helpers
+  import <%= components_module %>.Modal
 
   @impl Phoenix.LiveComponent
   def render(assigns) do

@@ -1,4 +1,4 @@
-defmodule <%= web_module %>.<%= scoped %>.Modal do
+defmodule <%= components_module %>.Modal do
   use <%= web_module %>, :component
 
   def modal(assigns) do

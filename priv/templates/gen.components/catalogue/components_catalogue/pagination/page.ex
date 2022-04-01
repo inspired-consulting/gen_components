@@ -1,4 +1,4 @@
-defmodule <%= web_module %>.<%= scoped %>Live.Paginations.Page do
+defmodule <%= catalogue_module %>.Paginations.Page do
   @moduledoc """
   the copy of a scrivener page.
   Plus adjustments for better demonstration.any()
@@ -44,7 +44,7 @@ defmodule <%= web_module %>.<%= scoped %>Live.Paginations.Page do
   end
 
   defimpl Enumerable do
-    alias <%= web_module %>.<%= scoped %>Live.Paginations.Page
+    alias <%= catalogue_module %>.Paginations.Page
     def count(_page), do: {:error, __MODULE__}
     def member?(_page, _value), do: {:error, __MODULE__}
 

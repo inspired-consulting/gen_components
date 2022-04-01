@@ -1,4 +1,4 @@
-defmodule <%= web_module %>.<%= scoped %>.Alert do
+defmodule <%= components_module %>.Alert do
   use <%= web_module %>, :component
 <%= for style <- [:primary, :secondary, :success, :danger, :warning, :info] do %>
   def alert_<%= style %>(assigns) do

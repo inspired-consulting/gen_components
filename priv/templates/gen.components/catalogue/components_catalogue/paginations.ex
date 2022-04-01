@@ -1,8 +1,8 @@
-defmodule <%= web_module %>.<%= scoped %>Live.Paginations do
+defmodule <%= catalogue_module %>.Paginations do
   use <%= web_module %>, :live_component
 
-  import <%= web_module %>.<%= compoents_scoped %>.Pagination
-  alias <%= web_module %>.<%= scoped %>Live.Paginations.Page
+  import <%= components_module %>.Pagination
+  alias __MODULE__.Page
 
   @impl Phoenix.LiveComponent
   def render(assigns) do

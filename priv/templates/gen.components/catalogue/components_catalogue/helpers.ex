@@ -1,4 +1,4 @@
-defmodule <%= web_module %>.<%= scoped %>Live.Helpers do
+defmodule <%= catalogue_module %>.Helpers do
   use <%= web_module %>, :component
 
   def placeholder(assigns) do

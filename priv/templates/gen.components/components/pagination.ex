@@ -1,4 +1,4 @@
-defmodule <%= web_module %>.<%= scoped %>.Pagination do
+defmodule <%= components_module %>.Pagination do
   use <%= web_module %>, :component
 
   def pagination_prev(assigns),

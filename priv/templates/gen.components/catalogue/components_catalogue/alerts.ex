@@ -1,7 +1,7 @@
-defmodule <%= web_module %>.<%= scoped %>Live.Alerts do
+defmodule <%= catalogue_module %>.Alerts do
   use <%= web_module %>, :component
 
-  import <%= web_module %>.<%= compoents_scoped %>.Alert
+  import <%= components_module %>.Alert
 
   def alerts(assigns) do
     ~H"""
