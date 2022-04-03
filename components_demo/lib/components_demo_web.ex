@@ -1,19 +1,19 @@
-defmodule GenComponentsWeb do
+defmodule ComponentsDemoWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: GenComponentsWeb
+      use Phoenix.Controller, namespace: ComponentsDemoWeb
 
       import Plug.Conn
-      alias GenComponentsWeb.Router.Helpers, as: Routes
+      alias ComponentsDemoWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/gen_components_web/templates",
-        namespace: GenComponentsWeb
+        root: "lib/components_demo_web/templates",
+        namespace: ComponentsDemoWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -27,7 +27,7 @@ defmodule GenComponentsWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {GenComponentsWeb.LayoutView, "live.html"}
+        layout: {ComponentsDemoWeb.LayoutView, "live.html"}
 
       unquote(view_helpers())
     end
@@ -76,8 +76,8 @@ defmodule GenComponentsWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import GenComponentsWeb.ErrorHelpers
-      alias GenComponentsWeb.Router.Helpers, as: Routes
+      import ComponentsDemoWeb.ErrorHelpers
+      alias ComponentsDemoWeb.Router.Helpers, as: Routes
     end
   end
 

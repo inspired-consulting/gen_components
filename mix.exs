@@ -10,24 +10,12 @@ defmodule GenComponents.MixProject do
     ]
   end
 
-  def application do
-    [
-      mod: {GenComponents.Application, []},
-      extra_applications: [:logger, :runtime_tools]
-    ]
-  end
-
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
-      {:floki, ">= 0.30.0", only: :test},
-      {:jason, "~> 1.2"},
-      {:phoenix_html, "~> 3.0"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.17.7"},
-      {:phoenix, "~> 1.6.0"},
-      {:plug_cowboy, "~> 2.5"}
+      {:phoenix, ">= 1.6.0"},
+      {:phoenix_live_view, ">= 0.17.0"},
+      {:heroicons, ">= 0.3.0", optional: true}
     ]
   end
 end

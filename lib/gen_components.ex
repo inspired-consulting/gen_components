@@ -1,2 +1,0 @@
-defmodule GenComponents do
-end

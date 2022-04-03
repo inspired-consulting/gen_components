@@ -1,12 +1,12 @@
-defmodule GenComponentsWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :gen_components
+defmodule ComponentsDemoWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :components_demo
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_gen_components_web_key",
+    key: "_components_demo_web_key",
     signing_salt: "Vj8HquCi"
   ]
 
@@ -18,7 +18,7 @@ defmodule GenComponentsWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :gen_components,
+    from: :components_demo,
     gzip: false,
     only: ~w(assets fonts images icon.svg robots.txt)
 
@@ -41,5 +41,5 @@ defmodule GenComponentsWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug GenComponentsWeb.Router
+  plug ComponentsDemoWeb.Router
 end
