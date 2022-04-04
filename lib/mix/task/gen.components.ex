@@ -1,23 +1,10 @@
 defmodule Mix.Tasks.Gen.Components do
   @shortdoc "Generates a set of components to start from."
+  @external_resource readme = "README.md"
+  @moduledoc File.read!(readme)
+             |> String.split("<!-- MDOC !-->")
+             |> Enum.fetch!(1)
 
-  @moduledoc """
-  Generates a set of UI components to start a project from.
-
-  It will also generate a component catalogue live view.
-
-  ## example usage
-
-  ```bash
-  mix gen.components
-  mix gen.components -o other_components
-  ```
-
-  ## Options
-
-  * `-o, --output` - lowercase name of the module,
-    that will hold the components. Defaults to `components`
-"""
   use Mix.Task
 
   @default_components_module "components"
@@ -74,7 +61,13 @@ defmodule Mix.Tasks.Gen.Components do
       components_module: "#{web_module}.#{components_scoped}",
       catalogue_scoped: "#{catalogue_scoped}Live",
       catalogue_module: "#{web_module}.#{catalogue_scoped}Live",
-      web_module: web_module
+      web_module: web_module,
+      styles: [:primary, :secondary, :success, :danger, :warning, :info],
+      semantic_icons: [
+        {:delete, :danger, "trash"},
+        {:edit, :primary, "pencil"},
+        {:add, :success, "plus"}
+      ]
     ]
 
     Mix.Phoenix.copy_from(

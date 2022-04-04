@@ -1,4 +1,5 @@
 # GenComponents
+<!-- MDOC !-->
 
 Generates a set of UI components to start a project from.
 
@@ -7,13 +8,12 @@ It will also generate a component catalogue live view.
 ## Installation
 
 The package can be installed by adding `gen_components` to your list of
-dependencies in `mix.exs`. `runtime: false` should be given, because the
-projet delivers an example endpoint, which should not be started:
+dependencies in `mix.exs`.
 
 ```elixir
 def deps do
   [
-    {:gen_components, "~> 0.1.0", only: [:dev], runtime: false}
+    {:gen_components, "~> 0.1.0", only: [:dev]}
   ]
 end
 ```
