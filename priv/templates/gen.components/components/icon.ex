@@ -1,6 +1,7 @@
 defmodule <%= components_module %>.Icon do
   use <%= web_module %>, :component
 
+  # {semantic_name, class, icon_name}
   @hero_icons_path "priv/solid"
   @default_type "solid"
   alias Heroicons.Solid
@@ -25,31 +26,13 @@ defmodule <%= components_module %>.Icon do
     <%%= if @type == "outline", do: apply(Outline, iconf_by_name(@name), [attrs]), else: apply(Solid, iconf_by_name(@name), [attrs]) %>
     """
   end
-
-  def icon_delete(assigns) do
+<%= for {semantic_name, style, icon_name} <- semantic_icons do %>
+  def icon_<%= semantic_name %>(assigns) do
     assigns = assign_new(assigns, :class, fn -> "" end)
     attrs = assigns_to_attributes(assigns, [:name, :class])
 
     ~H"""
-    <.icon name="trash" class={"text-danger #{@class}"} {attrs}/>
+    <.icon name="<%= icon_name %>" class={"text-<%= style %> #{@class}"} {attrs}/>
     """
   end
-
-  def icon_edit(assigns) do
-    assigns = assign_new(assigns, :class, fn -> "" end)
-    attrs = assigns_to_attributes(assigns, [:name, :class])
-
-    ~H"""
-    <.icon name="pencil" class={"text-primary #{@class}"} {attrs}/>
-    """
-  end
-
-  def icon_add(assigns) do
-    assigns = assign_new(assigns, :class, fn -> "" end)
-    attrs = assigns_to_attributes(assigns, [:name, :class])
-
-    ~H"""
-    <.icon name="plus" class={"text-success #{@class}"} {attrs}/>
-    """
-  end
-end
+<% end %>end

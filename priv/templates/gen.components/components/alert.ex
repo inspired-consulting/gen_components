@@ -1,6 +1,6 @@
 defmodule <%= components_module %>.Alert do
   use <%= web_module %>, :component
-<%= for style <- [:primary, :secondary, :success, :danger, :warning, :info] do %>
+<%= for style <- styles do %>
   def alert_<%= style %>(assigns) do
     assigns = assign_new(assigns, :class, fn -> "" end)
     attrs = assigns_to_attributes(assigns, [:class])
