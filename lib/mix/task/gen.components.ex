@@ -9,6 +9,14 @@ defmodule Mix.Tasks.Gen.Components do
 
   @default_components_module "components"
 
+  @default_styles [:primary, :secondary, :success, :danger, :warning, :info]
+  @default_icon_type "solid"
+  @default_semantic_icons [
+    {:delete, :danger, "trash"},
+    {:edit, :primary, "pencil"},
+    {:add, :success, "plus"}
+  ]
+
   @template_path Path.join(["priv", "templates", "gen.components"])
   @template_file_path Path.join(Application.app_dir(:gen_components), @template_path)
 
@@ -62,12 +70,9 @@ defmodule Mix.Tasks.Gen.Components do
       catalogue_scoped: "#{catalogue_scoped}Live",
       catalogue_module: "#{web_module}.#{catalogue_scoped}Live",
       web_module: web_module,
-      styles: [:primary, :secondary, :success, :danger, :warning, :info],
-      semantic_icons: [
-        {:delete, :danger, "trash"},
-        {:edit, :primary, "pencil"},
-        {:add, :success, "plus"}
-      ]
+      styles: config_styles(),
+      semantic_icons: config_semantic_icons(),
+      default_icon_type: config_default_icon_type()
     ]
 
     Mix.Phoenix.copy_from(
@@ -107,4 +112,8 @@ defmodule Mix.Tasks.Gen.Components do
       _ -> false
     end
   end
+
+  defp config_styles(), do: Application.get_env(:gen_components, :styles, @default_styles)
+  defp config_semantic_icons(), do: Application.get_env(:gen_components, :semantic_icon, @default_semantic_icons)
+  defp config_default_icon_type(), do: Application.get_env(:gen_components, :default_icon_type, @default_icon_type)
 end

@@ -5,6 +5,9 @@ Generates a set of UI components to start a project from.
 
 It will also generate a component catalogue live view.
 
+See the [demo project](https://github.com/inspired-consulting/gen_components/tree/main/components_demo)
+for some examples.
+
 ## Installation
 
 The package can be installed by adding `gen_components` to your list of
@@ -13,7 +16,9 @@ dependencies in `mix.exs`.
 ```elixir
 def deps do
   [
-    {:gen_components, "~> 0.1.0", only: [:dev]}
+    {:gen_components, "~> 0.1.0", only: [:dev]},
+    # optional icon package
+    {:heroicons, "~> 0.3.0"}
   ]
 end
 ```
