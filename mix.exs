@@ -15,6 +15,7 @@ defmodule GenComponents.MixProject do
     [
       {:phoenix, ">= 1.6.0"},
       {:phoenix_live_view, ">= 0.17.0"},
+      {:jason, ">= 1.2.0", only: [:test], optional: true},
       {:heroicons, ">= 0.3.0", optional: true}
     ]
   end

@@ -29,8 +29,12 @@ defmodule Mix.Tasks.Gen.Components do
   def run(argv) do
     if Mix.Project.umbrella?() do
       Mix.raise(
-        "mix gen.components must be invoked from within your *_web application root directory"
+        "mix gen.components must be invoked from within your web application app root directory"
       )
+    end
+
+    if !Mix.Phoenix.otp_app() do
+      Mix.raise("mix gen.components must be invoked from an app root directory")
     end
 
     {parsed, _argv, _errors} =
@@ -114,6 +118,10 @@ defmodule Mix.Tasks.Gen.Components do
   end
 
   defp config_styles(), do: Application.get_env(:gen_components, :styles, @default_styles)
-  defp config_semantic_icons(), do: Application.get_env(:gen_components, :semantic_icon, @default_semantic_icons)
-  defp config_default_icon_type(), do: Application.get_env(:gen_components, :default_icon_type, @default_icon_type)
+
+  defp config_semantic_icons(),
+    do: Application.get_env(:gen_components, :semantic_icon, @default_semantic_icons)
+
+  defp config_default_icon_type(),
+    do: Application.get_env(:gen_components, :default_icon_type, @default_icon_type)
 end
