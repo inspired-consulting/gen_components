@@ -25,6 +25,7 @@ gen_components-*.tar
 # Temporary files, for example, from tests.
 /tmp/
 
+/priv/static/assets
 /.vscode
 /.elixir_ls/
 /lib/components_demo_web/components/
