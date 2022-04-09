@@ -1,5 +1,4 @@
 defmodule ComponentsDemoWeb do
-
   def controller do
     quote do
       use Phoenix.Controller, namespace: ComponentsDemoWeb

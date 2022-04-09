@@ -28,9 +28,7 @@ defmodule Mix.Tasks.Gen.Components do
 
   def run(argv) do
     if Mix.Project.umbrella?() do
-      Mix.raise(
-        "mix gen.components must be invoked from within your web application app root directory"
-      )
+      Mix.raise("mix gen.components must be invoked from within your web application app root directory")
     end
 
     if !Mix.Phoenix.otp_app() do
