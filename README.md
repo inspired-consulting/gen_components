@@ -24,6 +24,14 @@ mix gen.components -o other_components
 See the [demo project](https://github.com/inspired-consulting/gen_components/tree/main/components_demo)
 for some examples.
 
+To see the demo project in action:
+
+* checkout the project
+* cd to the `components_demo` gonzo project
+* call `mix gen.components`
+* call `iex -S mix phx.server`
+* visit https://localhost:4000 or https://localhost:4000/catalogue
+
 ## Installation
 
 The package can be installed by adding `gen_components` to your list of
