@@ -43,7 +43,7 @@ defmodule <%= components_module %>.NavTop do
     attrs = assigns_to_attributes(assigns, [:class, :id, :label])
 
     ~H"""
-    <li class="nav-item dropdown" id={@id}>
+    <li class="nav-item dropdown" id={@id} {attrs}>
       <a class="nav-link dropdown-toggle" phx-click={toggle_nav_dropdown(@id)} href="#" id={"#{@id}-label"} data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%%= @label %></a>
       <ul class="dropdown-menu" aria-labelledby={"#{@id}-label"} phx-click-away={close_nav_dropdown(@id)} phx-window-keydown={close_nav_dropdown(@id)} phx-key="escape">
         <%%= render_slot(@inner_block) %>
