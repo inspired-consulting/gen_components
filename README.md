@@ -29,7 +29,8 @@ Add the folowing to your router.ex:
 
 ```elixir
 if Mix.env() == :dev do
-  live "/catalogue", MyAppWeb.ComponentsCatalogueLive, :index
+  import MyAppWeb.ComponentsCatalogueLive
+  catalogue_routes "/catalogue"
 end
 ```
 

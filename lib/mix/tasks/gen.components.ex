@@ -71,6 +71,7 @@ defmodule Mix.Tasks.Gen.Components do
       components_module: "#{web_module}.#{components_scoped}",
       catalogue_scoped: "#{catalogue_scoped}Live",
       catalogue_module: "#{web_module}.#{catalogue_scoped}Live",
+      catalogue_router_module: "#{web_module}.#{catalogue_scoped}Router",
       web_module: web_module,
       styles: config_styles(),
       semantic_icons: config_semantic_icons(),

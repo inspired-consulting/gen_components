@@ -13,7 +13,8 @@ defmodule ComponentsDemoWeb.Router do
   scope "/", ComponentsDemoWeb do
     pipe_through :browser
 
-    live "/catalogue", ComponentsCatalogueLive, :index
+    import ComponentsDemoWeb.ComponentsCatalogueLive
+    catalogue_routes("/catalogue")
 
     get "/", PageController, :index
   end
