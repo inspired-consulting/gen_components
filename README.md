@@ -1,9 +1,25 @@
 # GenComponents
 <!-- MDOC !-->
 
-Generates a set of UI components to start a project from.
+* Generates a set of UI heex components to start a project from.
+* Generates a component catalogue live view.
 
-It will also generate a component catalogue live view.
+The generated componets are meant to be a point to start from. They will
+reside in your project space, where you can easily adjust them to your needs.
+
+## example usage
+
+```bash
+mix gen.components
+mix gen.components -o other_components
+```
+
+## Options
+
+* `-o, --output` - lowercase name of the module,
+  that will hold the components. Defaults to `components`
+
+## Example
 
 See the [demo project](https://github.com/inspired-consulting/gen_components/tree/main/components_demo)
 for some examples.
@@ -33,15 +49,3 @@ if Mix.env() == :dev do
   catalogue_routes "/catalogue"
 end
 ```
-
-## example usage
-
-```bash
-mix gen.components
-mix gen.components -o other_components
-```
-
-## Options
-
-* `-o, --output` - lowercase name of the module,
-  that will hold the components. Defaults to `components`
