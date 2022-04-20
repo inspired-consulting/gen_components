@@ -30,7 +30,7 @@ To see the demo project in action:
 * cd to the `components_demo` gonzo project
 * call `mix gen.components`
 * call `iex -S mix phx.server`
-* visit https://localhost:4000 or https://localhost:4000/catalogue
+* visit <https://localhost:4000> or <https://localhost:4000/catalogue>
 
 ## Installation
 
