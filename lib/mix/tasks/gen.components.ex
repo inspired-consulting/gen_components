@@ -14,15 +14,18 @@ defmodule Mix.Tasks.Gen.Components do
   @default_semantic_icons [
     {:delete, :danger, "trash"},
     {:edit, :primary, "pencil"},
-    {:add, :success, "plus"}
+    {:add, :success, "plus"},
+    {:burger_menu, :default, "menu"}
   ]
 
   @template_path Path.join(["priv", "templates", "gen.components"])
   @template_file_path Path.join(Application.app_dir(:gen_components), @template_path)
 
+  @assets_js_template_path Path.join([@template_path, "assets", "js"])
   @catalogue_template_path Path.join(@template_path, "catalogue")
   @components_template_path Path.join(@template_path, "components")
 
+  @assets_js_template_file_path Path.join([@template_file_path, "assets", "js"])
   @catalogue_template_file_path Path.join(@template_file_path, "catalogue")
   @components_template_file_path Path.join(@template_file_path, "components")
 
@@ -83,8 +86,18 @@ defmodule Mix.Tasks.Gen.Components do
       @catalogue_template_path,
       bindings,
       Enum.map(
-        find_ex(@catalogue_template_file_path),
+        find_ext(@catalogue_template_file_path, "ex"),
         &{:eex, &1, Path.join(catalogue_path, "#{&1}")}
+      )
+    )
+
+    Mix.Phoenix.copy_from(
+      paths(),
+      @assets_js_template_path,
+      bindings,
+      Enum.map(
+        find_ext(@assets_js_template_file_path, "js"),
+        &{:eex, &1, Path.join(["assets", "js", "#{&1}"])}
       )
     )
 
@@ -93,7 +106,7 @@ defmodule Mix.Tasks.Gen.Components do
       @components_template_path,
       bindings,
       Enum.map(
-        find_ex(@components_template_file_path),
+        find_ext(@components_template_file_path, "ex"),
         &{:eex, &1, Path.join(components_path, "#{&1}")}
       )
     )
@@ -103,8 +116,8 @@ defmodule Mix.Tasks.Gen.Components do
     [".", :gen_components]
   end
 
-  defp find_ex(folder) do
-    "#{folder}/**/*.ex"
+  defp find_ext(folder, ext) do
+    "#{folder}/**/*.#{ext}"
     |> Path.wildcard()
     |> Enum.map(&Path.relative_to(&1, "#{folder}"))
   end

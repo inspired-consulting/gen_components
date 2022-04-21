@@ -47,13 +47,40 @@ def deps do
 end
 ```
 
-## Install the catalogue
+The generated components are meant to be changed after being generated. So it is
+recommendet to add the components folder to your live reload dev config:
 
-Add the folowing to your router.ex:
+```elixir
+# Watch static and templates for browser reloading.
+config :my_app_web, MyAppWeb.Endpoint,
+  live_reload: [
+    patterns: [
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"lib/my_app_web/(live|views|components)/.*(ex)$",
+      ~r"lib/my_app_web/templates/.*(eex)$"
+    ]
+  ]
+
+
+```
+
+### Install the catalogue
+
+Add the folowing to your `router.ex`:
 
 ```elixir
 if Mix.env() == :dev do
   import MyAppWeb.ComponentsCatalogueLive
   catalogue_routes "/catalogue"
 end
+```
+
+### Install the Javascript custom components
+
+The custom components are used to fomrat numbers and dates in the browsers locale.
+To make it work add the following to your `app.js`
+
+```javascript
+// to activate local format custom components
+import "./components"
 ```

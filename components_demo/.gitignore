@@ -31,3 +31,4 @@ gen_components-*.tar
 /lib/components_demo_web/components/
 /lib/components_demo_web/live/components_catalogue.ex
 /lib/components_demo_web/live/components_catalogue/
+/assets/js/components
