@@ -6,7 +6,29 @@ defmodule GenComponents.MixProject do
       app: :gen_components,
       version: "0.1.0",
       elixir: "~> 1.13",
-      deps: deps()
+      name: "gen.components",
+      description: "Generates a set of UI heex components to start a project from.",
+      source_url: "https://github.com/inspired-consulting/gen_components",
+      package: package(),
+      deps: deps(),
+      docs: docs()
+    ]
+  end
+
+  defp package() do
+    [
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/inspired-consulting/gen_components"},
+      maintainers: ["inspired-consulting"]
+    ]
+  end
+
+  defp docs do
+    [
+      main: "readme",
+      extras: [
+        "README.md"
+      ]
     ]
   end
 

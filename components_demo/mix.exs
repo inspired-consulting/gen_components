@@ -22,6 +22,7 @@ defmodule ComponentsDemo.MixProject do
     [
       {:phoenix, "~> 1.6.0"},
       {:phoenix_live_view, "~> 0.17.0"},
+      {:phoenix_ecto, "~> 4.4.0"},
       {:heroicons, "~> 0.3.0"},
       {:jason, "~> 1.3.0"},
       {:plug_cowboy, "~> 2.5.0"},
