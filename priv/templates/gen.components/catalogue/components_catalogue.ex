@@ -1,6 +1,7 @@
 defmodule <%= catalogue_module %> do
   use <%= web_module %>, :live_view
 
+  alias <%= catalogue_module %>.Form.MultiSelects
   alias <%= catalogue_module %>.Formats
   alias <%= catalogue_module %>.Modals
   alias <%= catalogue_module %>.Paginations
@@ -19,6 +20,7 @@ defmodule <%= catalogue_module %> do
         <ul>
           <li><%%= live_patch "Alert", to: Routes.components_catalogue_path(@socket, :alerts) %></li>
           <li><%%= live_patch "Formats", to: Routes.components_catalogue_path(@socket, :formats) %></li>
+          <li><%%= live_patch "Form - Multi Select", to: Routes.components_catalogue_path(@socket, :form_multiselects) %></li>
           <li><%%= live_patch "Icon", to: Routes.components_catalogue_path(@socket, :icons) %></li>
           <li><%%= live_patch "Modal", to: Routes.components_catalogue_path(@socket, :modals) %></li>
           <li><%%= live_patch "Navs Top", to: Routes.components_catalogue_path(@socket, :navs_top) %></li>
@@ -29,6 +31,7 @@ defmodule <%= catalogue_module %> do
         <%%= case @live_action do %>
           <%% :alerts -> %><.alerts/>
           <%% :formats -> %><.live_component module={Formats} id="formats"/>
+          <%% :form_multiselects -> %><.live_component module={MultiSelects} id="form-multiselects"/>
           <%% :icons -> %><.icons/>
           <%% :modals -> %><.live_component module={Modals} id="modals"/>
           <%% :navs_top -> %><.navs_top/>
@@ -58,6 +61,7 @@ defmodule <%= catalogue_module %> do
           live "/", ComponentsCatalogueLive, :index
           live "/alerts", ComponentsCatalogueLive, :alerts
           live "/formats", ComponentsCatalogueLive, :formats
+          live "/form_multiselects", ComponentsCatalogueLive, :form_multiselects
           live "/icons", ComponentsCatalogueLive, :icons
           live "/modals", ComponentsCatalogueLive, :modals
           live "/navs_top", ComponentsCatalogueLive, :navs_top
