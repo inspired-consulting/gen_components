@@ -97,7 +97,7 @@ defmodule Mix.Tasks.Gen.Components do
       bindings,
       Enum.map(
         find_ext(@assets_js_template_file_path, "js"),
-        &{:eex, &1, Path.join(["assets", "js", "#{&1}"])}
+        &{:text, &1, Path.join(["assets", "js", "#{&1}"])}
       )
     )
 
