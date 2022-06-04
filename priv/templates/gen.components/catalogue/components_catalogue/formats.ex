@@ -52,7 +52,7 @@ defmodule <%= catalogue_module %>.Formats do
         <p>Format a decimal number with dot separator as a local number.</p>
         <div style="margin: 1rem;">
           <.form let={f} for={:local_number} phx-change="change-local-number" phx-target={@myself}>
-            <div>UTC time: <%%= number_input(f, :number, value: @number) %></div>
+            <div>Number: <%%= number_input(f, :number, value: @number) %></div>
           </.form>
         </div>
         <div>
