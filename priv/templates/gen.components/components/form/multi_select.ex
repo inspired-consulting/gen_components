@@ -60,14 +60,16 @@ defmodule <%= components_module %>.Form.MultiSelect do
     attrs = assigns_to_attributes(assigns, [:options, :name, :form, :field, :value, :style, :class])
 
     ~H"""
-    <div {attrs} class={@class} style={@style}>
+    <div {attrs} class={@class} style={"position: relative #{@style}"}>
       <div class="input-group">
         <.multi_select_values name={@name} value={@value} options={@options} class="form-control" />
         <button phx-click={toggle_select_dropdown(@id)} class="btn btn-outline-secondary dropdown-toggle" type="button" id={"#{@id}-label"} aria-haspopup="true" aria-expanded="false"></button>
       </div>
-      <div class="dropdown-menu p-1" aria-labelledby={"#{@id}-label"} phx-click-away={close_select_dropdown(@id)} phx-window-keydown={close_select_dropdown(@id)} phx-key="escape">
-        <div style="max-height: 40vh; overflow-y: scroll;">
-          <.multi_select name={@name} value={@value} options={@options} />
+      <div>
+        <div class="dropdown-menu p-1" style="width: calc(100% - 2.2rem)" aria-labelledby={"#{@id}-label"} phx-click-away={close_select_dropdown(@id)} phx-window-keydown={close_select_dropdown(@id)} phx-key="escape">
+          <div style="max-height: 40vh; overflow-y: scroll;">
+            <.multi_select name={@name} value={@value} options={@options} />
+          </div>
         </div>
       </div>
     </div>
