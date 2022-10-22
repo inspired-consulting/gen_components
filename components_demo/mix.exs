@@ -21,13 +21,13 @@ defmodule ComponentsDemo.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.6.0"},
-      {:phoenix_live_view, "~> 0.17.0"},
+      {:phoenix_live_view, "~> 0.18.0"},
       {:phoenix_ecto, "~> 4.4.0"},
-      {:heroicons, "~> 0.3.0"},
-      {:jason, "~> 1.3.0"},
+      {:heroicons, "~> 0.5.0"},
+      {:jason, "~> 1.4.0"},
       {:plug_cowboy, "~> 2.5.0"},
       {:phoenix_live_reload, "~> 1.3.0", only: [:dev]},
-      {:esbuild, "~> 0.4.0", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.5.0", runtime: Mix.env() == :dev},
       {:gen_components, path: "./../", only: [:dev]}
     ]
   end

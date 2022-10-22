@@ -15,7 +15,7 @@ defmodule Mix.Tasks.Gen.Components do
     {:delete, :danger, "trash"},
     {:edit, :primary, "pencil"},
     {:add, :success, "plus"},
-    {:burger_menu, :default, "menu"}
+    {:burger_menu, :default, "bars_3"}
   ]
 
   @template_path Path.join(["priv", "templates", "gen.components"])

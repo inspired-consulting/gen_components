@@ -44,39 +44,22 @@ defmodule <%= components_module %>.Icon do
   ```
   """
 
-  @hero_icons_path "priv/solid"
-  alias Heroicons.Solid
-  alias Heroicons.Outline
-
-  @icons Application.app_dir(:heroicons, @hero_icons_path)
-         |> File.ls!()
-         |> Enum.map(&Path.basename/1)
-         |> Enum.map(&Path.rootname/1)
-         |> Enum.map(&{&1, String.replace(&1, "-", "_") |> String.to_atom()})
-         |> Map.new()
+  require Heroicons
+  @icons (Heroicons.__info__(:functions) |> Enum.map(&elem(&1, 0))) -- [:__components__]
 
   @doc """
   List all vendor icon names. Used for the catalogue.
   """
-  def icons(), do: Map.keys(@icons)
+  def icons(), do: @icons
 
   @doc """
   A general icon component for hero icons.
 
   ## Attributes
   * name: the name of the hero icon
-  * type: "outline" | "solid" (specific to hero icons)
   """
   def icon(assigns) do
-    assigns = assign_new(assigns, :type, fn -> <%= inspect(default_icon_type) %> end)
-    attrs = assigns_to_attributes(assigns, [:name, :type])
-
-    ~H"""
-    <%%= case @type do %>
-      <%% "outline" -> %><%%= apply(Outline, iconf_by_name(@name), [attrs]) %>
-      <%% "solid" -> %><%%= apply(Solid, iconf_by_name(@name), [attrs]) %>
-    <%% end %>
-    """
+    apply(Heroicons, String.to_existing_atom("#{assigns.name}"), [assigns])
   end
 <%= for {semantic_name, style, icon_name} <- semantic_icons do %>
   def icon_<%= semantic_name %>(assigns) do
@@ -88,6 +71,4 @@ defmodule <%= components_module %>.Icon do
     """
   end
 <% end %>
-# icon function name by icon name
-defp iconf_by_name(name), do: Map.fetch!(@icons, name)
 end
