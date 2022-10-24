@@ -42,7 +42,7 @@ def deps do
   [
     {:gen_components, "~> 0.1.0", only: [:dev]},
     # optional icon package
-    {:heroicons, "~> 0.3.0"}
+    {:heroicons, "~> 0.5.0"}
   ]
 end
 ```

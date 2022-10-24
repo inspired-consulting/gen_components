@@ -10,7 +10,8 @@ config :components_demo, ComponentsDemoWeb.Endpoint,
   secret_key_base: "C88MR3RWNePQcXr5GVVLpmFLi1kIpto6h5Jss9hhI5b/tg5K31wX5ogwJKxbm+hM",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
 # Watch static and templates for browser reloading.
