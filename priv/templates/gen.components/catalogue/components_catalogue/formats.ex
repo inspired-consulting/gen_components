@@ -27,7 +27,7 @@ defmodule <%= catalogue_module %>.Formats do
         <h2>Date / time</h2>
         <p>Format a DateTime struct.</p>
         <div style="margin: 1rem;">
-          <.form let={f} for={:local_time} phx-change="change-local-time" phx-target={@myself}>
+          <.form :let={f} for={:local_time} phx-change="change-local-time" phx-target={@myself}>
             <div>UTC time: <%%= datetime_select(f, :date_time, value: @datetime) %></div>
             <div>
               Format: <label><%%= radio_button(f, :format, "medium", checked: "medium" == @format) %>&nbsp;medium</label>
@@ -51,7 +51,7 @@ defmodule <%= catalogue_module %>.Formats do
         <h2>local_number</h2>
         <p>Format a decimal number with dot separator as a local number.</p>
         <div style="margin: 1rem;">
-          <.form let={f} for={:local_number} phx-change="change-local-number" phx-target={@myself}>
+          <.form :let={f} for={:local_number} phx-change="change-local-number" phx-target={@myself}>
             <div>Number: <%%= number_input(f, :number, value: @number) %></div>
           </.form>
         </div>

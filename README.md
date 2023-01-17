@@ -84,3 +84,7 @@ To make it work add the following to your `app.js`
 // to activate local format custom components
 import "./components"
 ```
+
+## How to contribute
+1. Use the gonzo project to build your component.
+2. Adapt it to the templates
