@@ -1,2 +1,0 @@
-[ ] popovers
-[ ] migrate to tailwind
