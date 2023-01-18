@@ -8,9 +8,6 @@ import { LiveSocket } from "phoenix_live_view"
 // to activate local format custom components
 import "./components"
 
-import "mdi-icons/css/materialdesignicons.min.css";
-
-
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, { params: { _csrf_token: csrfToken } })
 
