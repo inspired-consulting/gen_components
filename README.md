@@ -31,7 +31,7 @@ To see the demo project in action:
 * cd to the `components_demo` gonzo project
 * call `mix gen.components`
 * call `iex -S mix phx.server`
-* visit <https://localhost:4000> or <https://localhost:4000/catalogue>
+* visit [catalogue](https://localhost:4000/catalogue)
 
 ## Installation
 
@@ -69,7 +69,7 @@ Run `npm install` in `components_demo/assets`, to use tailwind and daisyUI
 
 ### Install the catalogue
 
-Add the folowing to your `router.ex`:
+Add the folowing to `router.ex` inside your project:
 
 ```elixir
 if Mix.env() == :dev do
@@ -80,7 +80,7 @@ end
 
 ### Install the Javascript custom components
 
-The custom components are used to fomrat numbers and dates in the browsers locale.
+The custom components are used to format numbers and dates in the browsers locale.
 To make it work add the following to your `app.js`
 
 ```javascript
