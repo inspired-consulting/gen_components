@@ -30,3 +30,4 @@ gen_components-*.tar
 /lib/gen_components_web/components/
 /lib/gen_components_web/live/components_catalogue.ex
 /lib/gen_components_web/live/components_catalogue/
+node_modules
