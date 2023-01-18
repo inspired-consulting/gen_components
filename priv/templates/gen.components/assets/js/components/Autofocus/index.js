@@ -1,5 +1,5 @@
 class Autofocus extends HTMLElement {
-  connectedCallback () {
+  connectedCallback() {
     try {
       const element = this.querySelector('[autofocus]')
       if (element) element.select()

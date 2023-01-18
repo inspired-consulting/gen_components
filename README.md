@@ -3,9 +3,10 @@
 
 * Generates a set of UI heex components to start a project from.
 * Generates a component catalogue live view.
+* Uses [daisyUI](https://daisyui.com/) build on top of [tailwindcss](https://tailwindcss.com/)
 
-The generated componets are meant to be a point to start from. They will
-reside in your project space, where you can easily adjust them to your needs.
+The generated components are meant to be a point to start from. 
+They will reside in your project space, where you can easily adjust them to your needs.
 
 ## example usage
 
@@ -42,7 +43,7 @@ def deps do
   [
     {:gen_components, "~> 0.1.0", only: [:dev]},
     # optional icon package
-    {:heroicons, "~> 0.3.0"}
+    {:heroicons, "~> 0.5.0"}
   ]
 end
 ```
@@ -64,7 +65,9 @@ config :my_app_web, MyAppWeb.Endpoint,
 
 ```
 
-### Catalogue integration
+Run `npm install` in `components_demo/assets`, to use tailwind and daisyUI
+
+### Install the catalogue
 
 Add the folowing to `router.ex` inside your project:
 
@@ -84,3 +87,7 @@ To make it work add the following to your `app.js`
 // to activate local format custom components
 import "./components"
 ```
+
+## How to contribute
+1. Use the gonzo project to build your component.
+2. Adapt it to the templates

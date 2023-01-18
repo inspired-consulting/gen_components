@@ -33,13 +33,13 @@ defmodule <%= catalogue_module %>.Form.SearchSelects do
       <section style="margin: 1rem;">
         <h1>Searchable selects</h1>
 
-        <.form let={f} for={@preferences_cs} as={:preferences_form} action="#" phx-change="change-preferences" phx-target={@myself}>
+        <.form :let={f} for={@preferences_cs} as={:preferences_form} action="#" phx-change="change-preferences" phx-target={@myself}>
           <h2>preferences</h2>
           <.multi_select_dropdown form={f} field={:example_values} options={@possible_options} />
         </.form>
         <button phx-click="set-4" phx-target={@myself}>set to 4</button>
 
-        <.form let={f} for={@form_cs} as={:example_form} action="#" phx-change="change" phx-target={@myself}>
+        <.form :let={f} for={@form_cs} as={:example_form} action="#" phx-change="change" phx-target={@myself}>
           <h2>search_select</h2>
           <.search_select form={f} field={:example_field} options={@example_options} />
         </.form>

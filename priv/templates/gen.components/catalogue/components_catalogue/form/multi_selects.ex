@@ -26,19 +26,19 @@ defmodule <%= catalogue_module %>.Form.MultiSelects do
       </section>
       <section style="margin: 1rem;">
         <h2>multi_select_dropdown</h2>
-        <.form let={f} for={@form_cs} as={:example_form} action="#" phx-change="change" phx-target={@myself}>
+        <.form :let={f} for={@form_cs} as={:example_form} action="#" phx-change="change" phx-target={@myself}>
           <.multi_select_dropdown form={f} field={:example_field} options={@example_options} />
         </.form>
       </section>
       <section style="margin: 1rem;">
         <h2>multi_select_values</h2>
-        <.form let={f} for={@form_cs} as={:example_form} action="#" phx-change="change" phx-target={@myself}>
+        <.form :let={f} for={@form_cs} as={:example_form} action="#" phx-change="change" phx-target={@myself}>
           <.multi_select_values form={f} field={:example_field} options={@example_options} />
         </.form>
       </section>
       <section style="margin: 1rem;">
         <h2>multi_select</h2>
-        <.form let={f} for={@form_cs} as={:example_form} action="#" phx-change="change" phx-target={@myself}>
+        <.form :let={f} for={@form_cs} as={:example_form} action="#" phx-change="change" phx-target={@myself}>
           <.multi_select form={f} field={:example_field} options={@example_options} />
         </.form>
       </section>

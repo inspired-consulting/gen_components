@@ -15,7 +15,7 @@ defmodule <%= catalogue_module %>.Paginations do
             <li><%%= entry %></li>
           <%% end %>
         </ul>
-        <.pagination page={@page} let={%{class: class, to_page: to_page}}>
+        <.pagination page={@page} :let={%{class: class, to_page: to_page}}>
           <a href="#" phx-target={@myself} phx-click="to_page" phx-value-page={to_page} class={class}>
             <%%= to_page %>
           </a>
@@ -29,13 +29,13 @@ defmodule <%= catalogue_module %>.Paginations do
             <li><%%= entry %></li>
           <%% end %>
         </ul>
-        <.pagination page={@page} let={%{class: class, to_page: to_page}}>
-          <:prev let={%{class: class, to_page: to_page}}>
+        <.pagination page={@page} :let={%{class: class, to_page: to_page}}>
+          <:prev :let={%{class: class, to_page: to_page}}>
             <a href="#" phx-target={@myself} phx-click="to_page" phx-value-page={to_page} class={class}>
               <.pagination_prev/>
             </a>
           </:prev>
-          <:next let={%{class: class, to_page: to_page}}>
+          <:next :let={%{class: class, to_page: to_page}}>
             <a href="#" phx-target={@myself} phx-click="to_page" phx-value-page={to_page} class={class}>
               <.pagination_next/>
             </a>
