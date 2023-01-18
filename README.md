@@ -3,9 +3,10 @@
 
 * Generates a set of UI heex components to start a project from.
 * Generates a component catalogue live view.
+* Uses [daisyUI](https://daisyui.com/) build on top of [tailwindcss](https://tailwindcss.com/)
 
-The generated componets are meant to be a point to start from. They will
-reside in your project space, where you can easily adjust them to your needs.
+The generated components are meant to be a point to start from. 
+They will reside in your project space, where you can easily adjust them to your needs.
 
 ## example usage
 
@@ -63,6 +64,8 @@ config :my_app_web, MyAppWeb.Endpoint,
 
 
 ```
+
+Run `npm install` in `components_demo/assets`, to use tailwind and daisyUI
 
 ### Install the catalogue
 

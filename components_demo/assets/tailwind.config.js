@@ -15,15 +15,14 @@ module.exports = {
   // https://daisyui.com/docs/config/
   daisyui: {
     styled: true,
-    themes: [
-      // add here custom themes
-    ],
+    // https://daisyui.com/docs/themes/
+    // https://daisyui.com/theme-generator/
+    themes: ["cupcake", "dark", "cmyk"],
     base: true,
     utils: true,
     logs: true,
     rtl: false,
     prefix: "",
-    darkTheme: "dark",
   },
   plugins: [
     // if daisyui is not needed, deactivate here
