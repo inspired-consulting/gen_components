@@ -12,7 +12,7 @@ defmodule <%= catalogue_module %>.AvatarUpload do
       auto_upload: true,
       chunk_timeout: 1_000_000_000
     )
-    # |> assign(assigns)
+    |> assign(assigns)
     |> assign(upload_state: {:idle, nil})
     |> then(fn s -> {:ok, s} end)
   end
