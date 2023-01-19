@@ -10,6 +10,10 @@ defmodule ComponentsDemoWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
   scope "/", ComponentsDemoWeb do
     pipe_through :browser
 
@@ -17,5 +21,10 @@ defmodule ComponentsDemoWeb.Router do
     catalogue_routes("/catalogue")
 
     get "/", PageController, :index
+  end
+
+  scope "/api", ComponentsDemoWeb do
+    pipe_through :api
+    post "/upload", ImageController, :create
   end
 end

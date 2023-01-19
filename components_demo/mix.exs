@@ -29,7 +29,8 @@ defmodule ComponentsDemo.MixProject do
       {:phoenix_live_reload, "~> 1.3.0", only: [:dev]},
       {:esbuild, "~> 0.5.0", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.1.0", only: [:dev]},
-      {:gen_components, path: "./../", only: [:dev]}
+      {:gen_components, path: "./../", only: [:dev]},
+      {:httpoison, "~> 1.8"}
     ]
   end
 end

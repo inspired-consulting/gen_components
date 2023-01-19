@@ -1,14 +1,10 @@
 defmodule <%= catalogue_module %> do
   use <%= web_module %>, :live_view
 
-  alias <%= catalogue_module %>.Form.MultiSelects
-  alias <%= catalogue_module %>.Form.SearchSelects
-  alias <%= catalogue_module %>.Formats
-  alias <%= catalogue_module %>.Modals
-  alias <%= catalogue_module %>.Paginations
-  import <%= catalogue_module %>.Alerts
-  import <%= catalogue_module %>.NavsTop
-  import <%= catalogue_module %>.Icons
+  alias <%= catalogue_module %>.Form.{MultiSelects, SearchSelects}
+  alias <%= catalogue_module %>.{Formats,Modals, Paginations, AvatarUpload}
+
+  import <%= catalogue_module %>.{Alerts, NavsTop, Icons}
 
   @impl Phoenix.LiveView
   def render(assigns) do
@@ -20,6 +16,7 @@ defmodule <%= catalogue_module %> do
       <nav style="flex: 1;">
         <ul>
           <li><%%= live_patch "Alert", to: Routes.components_catalogue_path(@socket, :alerts) %></li>
+          <li><%%= live_patch "Avatar Upload", to: Routes.components_catalogue_path(@socket, :avatar_upload) %></li>
           <li><%%= live_patch "Formats", to: Routes.components_catalogue_path(@socket, :formats) %></li>
           <li><%%= live_patch "Form - Multi Select", to: Routes.components_catalogue_path(@socket, :form_multiselects) %></li>
           <li><%%= live_patch "Form - Seachable Select", to: Routes.components_catalogue_path(@socket, :form_searchselects) %></li>
@@ -32,6 +29,7 @@ defmodule <%= catalogue_module %> do
       <main style="flex: 5;">
         <%%= case @live_action do %>
           <%% :alerts -> %><.alerts/>
+          <%% :avatar_upload -> %><.live_component module={AvatarUpload} id="avatar-upload"/>
           <%% :formats -> %><.live_component module={Formats} id="formats"/>
           <%% :form_multiselects -> %><.live_component module={MultiSelects} id="form-multiselects"/>
           <%% :form_searchselects -> %><.live_component module={SearchSelects} id="form-multiselects"/>
@@ -63,6 +61,7 @@ defmodule <%= catalogue_module %> do
         scope path do
           live "/", ComponentsCatalogueLive, :index
           live "/alerts", ComponentsCatalogueLive, :alerts
+          live "/avatar_upload", ComponentsCatalogueLive, :avatar_upload
           live "/formats", ComponentsCatalogueLive, :formats
           live "/form_multiselects", ComponentsCatalogueLive, :form_multiselects
           live "/form_searchselects", ComponentsCatalogueLive, :form_searchselects
