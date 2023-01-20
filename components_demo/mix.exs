@@ -26,8 +26,8 @@ defmodule ComponentsDemo.MixProject do
       {:heroicons, "~> 0.5.0"},
       {:jason, "~> 1.4.0"},
       {:plug_cowboy, "~> 2.5.0"},
-      {:phoenix_live_reload, "~> 1.3.0", only: [:dev]},
-      {:esbuild, "~> 0.5.0", runtime: Mix.env() == :dev},
+      {:phoenix_live_reload, "~> 1.4.0", only: [:dev]},
+      {:esbuild, "~> 0.5", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.1.0", only: [:dev]},
       {:gen_components, path: "./../", only: [:dev]}
     ]

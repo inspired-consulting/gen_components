@@ -1,52 +1,61 @@
 defmodule <%= components_module %>.Format do
   use <%= web_module %>, :component
 
-  def tel(assigns) do
-    extra = assigns_to_attributes(assigns, [:number])
+  attr :number, :any, doc: "integer or string"
+  attr :extra, :global
 
+  def tel(assigns) do
     ~H"""
-    <a {extra} href={"tel:#{@number}"}><%%= @number %></a>
+    <a @extra id={gen_id()} href={"tel:#{@number}"}><%%= @number %></a>
     """
   end
+
+  attr :address, :string, doc: "email address"
+  attr :extra, :global
 
   def email(assigns) do
-    extra = assigns_to_attributes(assigns, [:address])
-
     ~H"""
-    <a {extra} href={"mailto:#{@address}"}><%%= @address %></a>
+    <a @extra id={gen_id()} href={"mailto:#{@address}"}><%%= @address %></a>
     """
   end
+
+  attr :time, :any, doc: "Time or iso time string"
+  attr :format, :string, default: "medium", values: ["medium", "short"]
+  attr :extra, :global
 
   def local_time(assigns) do
-    extra = assigns_to_attributes(assigns, [:time])
-
     ~H"""
-    <custom-local-time {extra} iso-time={@time} phx-update="ignore"><%%= @time %></custom-local-time>
+    <custom-local-time @extra id={gen_id()} iso-time={@time} phx-update="ignore"><%%= @time %></custom-local-time>
     """
   end
+
+  attr :date, :any, doc: "Date or iso date string"
+  attr :extra, :global
 
   def local_date(assigns) do
-    extra = assigns_to_attributes(assigns, [:date])
-
     ~H"""
-    <custom-local-date {extra} iso-date={@date} phx-update="ignore"><%%= @date %></custom-local-date>
+    <custom-local-date @extra id={gen_id()} iso-date={@date} phx-update="ignore"><%%= @date %></custom-local-date>
     """
   end
+
+  attr :datetime, :any, doc: "DateTime or iso datetime string"
+  attr :format, :string, default: "medium", values: ["medium"]
+  attr :extra, :global
 
   def local_datetime(assigns) do
-    assigns = assign_new(assigns, :format, fn -> "medium" end)
-    extra = assigns_to_attributes(assigns, [:datetime, :format])
-
     ~H"""
-    <custom-local-datetime {extra} iso-datetime={@datetime} format={@format} phx-update="ignore"><%%= @datetime %></custom-local-datetime>
+    <custom-local-datetime @extra id={gen_id()} iso-datetime={@datetime} format={@format} phx-update="ignore"><%%= @datetime %></custom-local-datetime>
     """
   end
+
+  attr :number, :any, doc: "integer, float or Decimal"
+  attr :extra, :global
 
   def local_number(assigns) do
-    extra = assigns_to_attributes(assigns, [:number])
-
     ~H"""
-    <custom-local-number {extra} value={@number} phx-update="ignore"><%%= @number %></custom-local-number>
+    <custom-local-number @extra id={gen_id()} value={@number} phx-update="ignore"><%%= @number %></custom-local-number>
     """
   end
+
+  defp gen_id, do: Enum.random(10000000..99999999)
 end
