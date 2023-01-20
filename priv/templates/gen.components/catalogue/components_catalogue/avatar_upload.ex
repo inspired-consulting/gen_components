@@ -3,6 +3,7 @@ defmodule <%= catalogue_module %>.AvatarUpload do
 
   @upload_url "http://localhost:4000/api/upload"
 
+  @impl true
   def update(assigns, socket) do
     socket
     |> allow_upload(
@@ -42,7 +43,7 @@ defmodule <%= catalogue_module %>.AvatarUpload do
      |> cancel_upload(:uploaded_files, ref)}
   end
 
-  defp presign_upload(entry, socket) do
+  defp presign_upload(_entry, socket) do
     {:ok, %{uploader: "UpChunk", entrypoint: @upload_url}, socket}
   end
 
@@ -56,7 +57,7 @@ defmodule <%= catalogue_module %>.AvatarUpload do
 
     {:ok, task_pid} =
       Task.start(fn ->
-        {_state, response} = upload_file(path)
+        {_state, _response} = upload_file(path)
         # # Handle response
         # case response.status_code do
         #   200 ->
@@ -113,39 +114,39 @@ defmodule <%= catalogue_module %>.AvatarUpload do
     ~H"""
     <div>
       <div>
-        <%= for entry <- @uploads.uploaded_files.entries do %>
+        <%%= for entry <- @uploads.uploaded_files.entries do %>
           <article class="upload-entry">
             <div class="flex flex-row justify-center">
               <figure>
                 <.live_img_preview entry={entry} />
                 <figcaption class="mt-5">
-                  <%= entry.client_name %>
+                  <%%= entry.client_name %>
                   <div class="tooltip tooltip-top tooltip-warning" data-tip="Cancel">
                     <button phx-click="cancel-upload" phx-value-ref={entry.ref} aria-label="cancel" phx-target={@myself}>
                       <i class="text-l mdi mdi-close"></i>
                     </button>
                   </div>
 
-                  <%= if entry.done? do %>
+                  <%%= if entry.done? do %>
                     <div class="tooltip tooltip-right tooltip-success" data-tip="Done">
                       <i class="text-l mdi mdi-check"></i>
                     </div>
-                  <% end %>
+                  <%% end %>
                 </figcaption>
               </figure>
             </div>
             <progress class="progress w-full" value={entry.progress} max="100">
-              <%= entry.progress %>%
+              <%%= entry.progress %>%
             </progress>
-            <%= for err <- upload_errors(@uploads.uploaded_files, entry) do %>
-              <p class="alert alert-danger"><%= inspect(err) %></p>
-            <% end %>
+            <%%= for err <- upload_errors(@uploads.uploaded_files, entry) do %>
+              <p class="alert alert-danger"><%%= inspect(err) %></p>
+            <%% end %>
           </article>
-        <% end %>
+        <%% end %>
 
-        <%= for err <- upload_errors(@uploads.uploaded_files) do %>
-          <p class="alert alert-danger"><%= inspect(err) %></p>
-        <% end %>
+        <%%= for err <- upload_errors(@uploads.uploaded_files) do %>
+          <p class="alert alert-danger"><%%= inspect(err) %></p>
+        <%% end %>
       </div>
       <.form :let={_f} for={:uploads} id="upload-form" phx-change="validate" phx-target={@myself}>
         <div phx-drop-target={@uploads.uploaded_files.ref} class="pt-2">
@@ -161,17 +162,18 @@ defmodule <%= catalogue_module %>.AvatarUpload do
                 <span class="font-semibold">Click to upload</span> or drag and drop
               </p>
               <p class="text-xs text-gray-500 dark:text-gray-400">
-                <%= [".png", ".jpg", ".jpeg"] |> Enum.join(", ") %>
+                <%%= [".png", ".jpg", ".jpeg"] |> Enum.join(", ") %>
               </p>
               <p class="text-xs text-gray-500 dark:text-gray-400">max. 100 MB</p>
             </div>
-            <%= live_file_input(@uploads.uploaded_files,
+            <%%= live_file_input(@uploads.uploaded_files,
               class: "hidden",
               "data-preview-target": "#upload-preview"
             ) %>
           </label>
         </div>
       </.form>
+      JS Upload will trigger immediately
       <div class="pt-2 flex flex-row justify-center gap-5">
         <div class="tooltip tooltip-bottom" data-tip="Delete">
           <button class="btn btn-outline" phx-click="delete" phx-target={@myself}>
@@ -181,13 +183,8 @@ defmodule <%= catalogue_module %>.AvatarUpload do
         <div class="tooltip tooltip-bottom" data-tip="Upload via LV">
           <button type="button" class={"btn btn-outline #{upload_button_classes(@upload_state)}"} phx-click="upload" phx-target={@myself}>
             <i class="text-2xl mdi mdi-content-save"></i>
-            <%= upload_button_text(@upload_state) %>
+            <%%= upload_button_text(@upload_state) %>
           </button>
-        </div>
-        <div class="tooltip tooltip-bottom" data-tip="Upload via JS">
-          <%= submit class: "btn btn-outline" , form: "upload-form" do %>
-            <i class="text-2xl mdi mdi-content-save-move-outline"></i>
-          <% end %>
         </div>
       </div>
     </div>
