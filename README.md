@@ -29,6 +29,7 @@ To see the demo project in action:
 
 * checkout the project
 * cd to the `components_demo` gonzo project
+* run `npm install` in `components_demo/assets`
 * call `mix gen.components`
 * call `iex -S mix phx.server`
 * visit [catalogue](https://localhost:4000/catalogue)

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@mux/upchunk": "^3.0.0",
     "daisyui": "^2.47.0",
     "phoenix": "file:../../../deps/phoenix",
     "phoenix_html": "file:../../../deps/phoenix_html",
