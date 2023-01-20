@@ -25,6 +25,6 @@ defmodule ComponentsDemoWeb.Router do
 
   scope "/api", ComponentsDemoWeb do
     pipe_through :api
-    post "/upload", ImageController, :create
+    post "/upload", UploadController, :create
   end
 end

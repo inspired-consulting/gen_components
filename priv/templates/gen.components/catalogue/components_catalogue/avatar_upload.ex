@@ -1,7 +1,8 @@
 defmodule <%= catalogue_module %>.AvatarUpload do
   use <%= web_module %>, :live_component
 
-  @impl true
+  @upload_url "http://localhost:4000/api/upload"
+
   def update(assigns, socket) do
     socket
     |> allow_upload(
@@ -10,7 +11,8 @@ defmodule <%= catalogue_module %>.AvatarUpload do
       max_entries: 1,
       max_file_size: 100_000_000,
       auto_upload: true,
-      chunk_timeout: 1_000_000_000
+      chunk_timeout: 1_000_000_000,
+      external: &presign_upload/2
     )
     |> assign(assigns)
     |> assign(upload_state: {:idle, nil})
@@ -24,7 +26,13 @@ defmodule <%= catalogue_module %>.AvatarUpload do
 
   @impl true
   def handle_event("upload", _params, socket) do
-    {:noreply, socket |> file_upload_handler()}
+    {:noreply,
+     socket
+     |> file_upload_handler()
+     |> put_flash(
+       :info,
+       "Uploaded"
+     )}
   end
 
   @impl true
@@ -32,6 +40,10 @@ defmodule <%= catalogue_module %>.AvatarUpload do
     {:noreply,
      socket
      |> cancel_upload(:uploaded_files, ref)}
+  end
+
+  defp presign_upload(entry, socket) do
+    {:ok, %{uploader: "UpChunk", entrypoint: @upload_url}, socket}
   end
 
   defp file_upload_handler(socket) do
@@ -74,7 +86,7 @@ defmodule <%= catalogue_module %>.AvatarUpload do
   defp upload_file(file_path) do
     csrf_token = Phoenix.Controller.get_csrf_token()
 
-    "http://localhost:4000/api/upload"
+    @upload_url
     |> HTTPoison.post(
       {:multipart, [{:file, file_path, {"form-data", [name: "filedata", filename: Path.basename(file_path), csrf_token: csrf_token]}, ["x-csrf-token": csrf_token]}]}
     )
@@ -96,6 +108,8 @@ defmodule <%= catalogue_module %>.AvatarUpload do
 
   @impl true
   def render(assigns) do
+    # assigns = assign_new(assigns, :class, fn -> "" end)
+    # _attrs = assigns_to_attributes(assigns, [:class])
     ~H"""
     <div>
       <div>
@@ -133,7 +147,7 @@ defmodule <%= catalogue_module %>.AvatarUpload do
           <p class="alert alert-danger"><%= inspect(err) %></p>
         <% end %>
       </div>
-      <.form :let={_f} for={:uploads} id="space_avatar_upload" phx-change="validate" phx-target={@myself}>
+      <.form :let={_f} for={:uploads} id="upload-form" phx-change="validate" phx-target={@myself}>
         <div phx-drop-target={@uploads.uploaded_files.ref} class="pt-2">
           <label
             for={@uploads.uploaded_files.ref}
@@ -165,15 +179,15 @@ defmodule <%= catalogue_module %>.AvatarUpload do
           </button>
         </div>
         <div class="tooltip tooltip-bottom" data-tip="Upload via LV">
-          <button class={"btn btn-outline #{upload_button_classes(@upload_state)}"} phx-click="upload" phx-target={@myself}>
+          <button type="button" class={"btn btn-outline #{upload_button_classes(@upload_state)}"} phx-click="upload" phx-target={@myself}>
             <i class="text-2xl mdi mdi-content-save"></i>
             <%= upload_button_text(@upload_state) %>
           </button>
         </div>
         <div class="tooltip tooltip-bottom" data-tip="Upload via JS">
-          <button class="btn btn-outline" phx-click="upload" phx-target={@myself}>
+          <%= submit class: "btn btn-outline" , form: "upload-form" do %>
             <i class="text-2xl mdi mdi-content-save-move-outline"></i>
-          </button>
+          <% end %>
         </div>
       </div>
     </div>
